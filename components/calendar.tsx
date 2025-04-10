@@ -7,7 +7,7 @@ interface CalendarProps {
 }
 
 export function Calendar({ selectedDay, month, year }: CalendarProps) {
-  const daysOfWeek = ["ԿԻ", "ԵԿ", "ԵՔ", "ՉՐ", "ՀԳ", "ՈՒ", "ՇԲ"]
+  const daysOfWeek = ["ԵԿ", "ԵՔ", "ՉՐ", "ՀԳ", "ՈՒ", "ՇԲ", "ԿԻ"]
 
   // Generate days for the month
   const getDaysInMonth = (year: number, month: number) => {
@@ -15,7 +15,8 @@ export function Calendar({ selectedDay, month, year }: CalendarProps) {
   }
 
   const getFirstDayOfMonth = (year: number, month: number) => {
-    return new Date(year, month - 1, 1).getDay()
+    const firstDay = new Date(year, month - 1, 1).getDay()
+    return firstDay === 0 ? 6 : firstDay - 1
   }
 
   const daysInMonth = getDaysInMonth(year, month)
