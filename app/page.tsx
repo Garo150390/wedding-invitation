@@ -1130,7 +1130,7 @@ export default function Home() {
                                         <p className="text-gray-600 text-xs"><strong
                                             className="text-black">Սաղմոսավանք </strong>
                                         </p>
-                                        <p className="text-2xl text-gray-700 font-light">13:00</p>
+                                        <p className="text-2xl text-gray-700 font-light">14:00</p>
                                         <div className="mt-1">
                                             <a
                                                 href="https://www.google.com/maps/search/?api=1&query=40.38054071398459,44.39671876840379"
