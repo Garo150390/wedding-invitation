@@ -719,7 +719,7 @@ export default function Home() {
 
                 {/* Date */}
                 <div className="text-center mb-8">
-                    <h2 className="font-bokonique-light text-2xl text-[#E3CB88]">28 ԱՊՐԻԼ 2025</h2>
+                    <h2 className="font-bokonique-light text-2xl text-[#E3CB88]"><strong className="animate-pulse text-3xl">28</strong> ԱՊՐԻԼ 2025</h2>
 
                     {/* Calendar */}
                     <Calendar selectedDay={28} month={4} year={2025}/>
