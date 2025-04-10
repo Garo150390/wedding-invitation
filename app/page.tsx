@@ -644,7 +644,7 @@ export default function Home() {
 
     return (
         <main className="flex min-h-screen flex-col items-center bg-white">
-            <audio ref={audioRef} loop src="/music/Tigran_Hamasyan-Kars2.mp3"/>
+            <audio ref={audioRef} loop src="/music/AndreaBocelli-Melodrama.mp3"/>
 
             {/* Music Control Button */}
             <button
