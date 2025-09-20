@@ -91,6 +91,46 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .text-gold {
+    color: #e3cb88;
+  }
+
+  .bg-gold {
+    background-color: #e3cb88;
+  }
+
+  .border-gold {
+    border-color: #e3cb88;
+  }
+
+  .ring-gold {
+    --tw-ring-color: #e3cb88;
+  }
+
+  .text-gray {
+    color: #707070;
+  }
+
+  .bg-gray {
+    background-color: #707070;
+  }
+
+  .border-gray {
+    border-color: #707070;
+  }
+
+  .text-dark {
+    color: #1a1818;
+  }
+
+  .bg-dark {
+    background-color: #1a1818;
+  }
+
+  .border-dark {
+    border-color: #1a1818;
+  }
 }
 
 @layer base {
