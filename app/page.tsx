@@ -1,4 +1,4 @@
-"use client"
+'use client'
 // import { Calendar } from '@/components/calendar'
 //
 // export default function Home() {
@@ -554,9 +554,9 @@
 //     )
 // }
 //
-import { useState, useEffect, useRef } from "react"
-import { Calendar } from "@/components/calendar"
-import { Pause, Music } from "lucide-react"
+import { useState, useEffect, useRef } from 'react'
+import { Calendar } from '@/components/calendar'
+import { Pause, Music } from 'lucide-react'
 
 export default function Home() {
     const [isPlaying, setIsPlaying] = useState(false)
@@ -571,7 +571,7 @@ export default function Home() {
                 setIsPlaying(false)
             } else {
                 audioRef.current.play().catch((error) => {
-                    console.error("Audio playback failed:", error)
+                    console.error('Audio playback failed:', error)
                 })
             }
             setIsPlaying(!isPlaying)
@@ -596,7 +596,7 @@ export default function Home() {
                         setAutoplayAttempted(true)
                     })
                     .catch((error) => {
-                        console.error("Autoplay prevented:", error)
+                        console.error('Autoplay prevented:', error)
                         setIsPlaying(false)
                         setAutoplayAttempted(true)
                     })
@@ -618,137 +618,107 @@ export default function Home() {
                     attemptAutoplay(3)
                 }
                 // Remove event listeners after first interaction
-                document.removeEventListener("click", handleUserInteraction)
-                document.removeEventListener("touchstart", handleUserInteraction)
-                document.removeEventListener("keydown", handleUserInteraction)
-                document.removeEventListener("scroll", handleUserInteraction)
+                document.removeEventListener('click', handleUserInteraction)
+                document.removeEventListener('touchstart', handleUserInteraction)
+                document.removeEventListener('keydown', handleUserInteraction)
+                document.removeEventListener('scroll', handleUserInteraction)
             }
 
-            document.addEventListener("click", handleUserInteraction)
-            document.addEventListener("touchstart", handleUserInteraction)
-            document.addEventListener("keydown", handleUserInteraction)
-            document.addEventListener("scroll", handleUserInteraction)
+            document.addEventListener('click', handleUserInteraction)
+            document.addEventListener('touchstart', handleUserInteraction)
+            document.addEventListener('keydown', handleUserInteraction)
+            document.addEventListener('scroll', handleUserInteraction)
 
             return () => {
                 if (audio) {
                     audio.pause()
                 }
                 clearTimeout(timeoutId)
-                document.removeEventListener("click", handleUserInteraction)
-                document.removeEventListener("touchstart", handleUserInteraction)
-                document.removeEventListener("keydown", handleUserInteraction)
-                document.removeEventListener("scroll", handleUserInteraction)
+                document.removeEventListener('click', handleUserInteraction)
+                document.removeEventListener('touchstart', handleUserInteraction)
+                document.removeEventListener('keydown', handleUserInteraction)
+                document.removeEventListener('scroll', handleUserInteraction)
             }
         }
     }, [isPlaying])
 
     return (
         <main className="flex min-h-screen flex-col items-center bg-white">
-            <audio ref={audioRef} loop src="/music/AndreaBocelli-Melodrama.mp3"/>
+            <audio ref={audioRef} loop src="/music/arevin.mp3"/>
 
             {/* Music Control Button */}
             <button
                 onClick={togglePlay}
                 className={`fixed bottom-4 right-4 z-50 bg-[#E3CB88] text-white rounded-full p-3 shadow-md flex items-center justify-center transition-all duration-300 ${
-                    !isPlaying && autoplayAttempted ? "animate-pulse" : ""
+                    !isPlaying && autoplayAttempted ? 'animate-pulse' : ''
                 }`}
-                aria-label={isPlaying ? "Pause music" : "Play music"}
+                aria-label={isPlaying ? 'Pause music' : 'Play music'}
             >
-                {isPlaying ? <Pause size={20} /> : <Music size={20} />}
+                {isPlaying ? <Pause size={20}/> : <Music size={20}/>}
             </button>
 
             {/* Music notification - shows briefly if autoplay is blocked */}
             {isPlaying && autoplayAttempted && (
-                <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-[#E3CB88] text-white px-4 py-2 rounded-full text-xs flex items-center gap-2 shadow-md z-50 animate-fade-out">
-                    <Music size={14} />
+                <div
+                    className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-[#E3CB88] text-white px-4 py-2 rounded-full text-xs flex items-center gap-2 shadow-md z-50 animate-fade-out">
+                    <Music size={14}/>
                     <span>Click to play wedding music</span>
                 </div>
             )}
 
-            {/* Music Control Button */}
-            {/*<button
-                onClick={togglePlay}
-                className="fixed bottom-4 right-4 z-50 bg-[#E3CB88] text-white rounded-full p-3 shadow-md flex items-center justify-center"
-                aria-label={isPlaying ? "Pause music" : "Play music"}
-            >
-                {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-            </button>*/}
-            {/*<div className="hero">
-          <div className="text-overlay">
-            <h1>Roman & Svetlana</h1>
-            <h2>WEDDING DAY</h2>
-          </div>
-        </div>*/}
-
             <div className="w-full max-w-[430px] mx-auto">
-                {/* Hero Image */}
-                {/*<div className="relative w-full aspect-[4/3] mb-6">
-          <Image src="/images/Group 915.png" alt="Roman and Svetlana" fill className="object-contain"/>
-        </div>*/}
-
-                {/*<div className="relative w-full">
-            <Image src="/images/Group 915.png" alt="Roman and Svetlana" fill className={'!static'}/>
-          </div>*/}
-
                 <div className="hero">
                     <div className="text-center text-overlay -mb-20 px-4">
-                        <h1 className="font-stylish-mother text-[46px] leading-tight text-gray-600">Roman &
-                            Svetlana</h1>
-                        <h2 className="font-lato text-xl uppercase tracking-[0.2em] text-[#E3CB88]">WEDDING DAY</h2>
+                        <h1 className="font-stylish-mother text-[46px] leading-tight text-gray-600">Arév</h1>
+                        <h2 className="font-lato text-xl uppercase tracking-[0.2em] text-[#E3CB88]">is turning <span
+                            className="text-3xl">ONE!</span></h2>
                     </div>
                 </div>
-
-                {/* Names */}
-                {/*<div className="text-center text-overlay mb-1 px-4">
-            <h1 className="font-serif text-[46px] leading-tight text-gray-600">Roman & Svetlana</h1>
-          </div>*/}
-
-                {/* Wedding Day */}
-                {/*<div className="text-center mb-8">
-            <h2 className="font-sans text-xl uppercase tracking-[0.2em] text-[#E3CB88]">WEDDING DAY</h2>
-          </div>*/}
 
                 {/* Armenian Text */}
                 <div className="text-center mb-8 px-8 mt-20">
                     <p className="text-gray-500 text-sm mb-2">Սիրելի Բարեկամ</p>
                     <p className="text-gray-500 text-xs mb-8 max-w-xs mx-auto leading-relaxed">
-                        Մեծ ուրախությամբ հրավիրում ենք Ձեզ մեր սիրո թագադրման օրվան՝ հարսանյաց արարողությանը
-                        մասնակցելու:
+                        Արդեն մեկ տարի է Արևն այս աշխարհը ավելի լավն է դարձնում։
+                        Իսկ դու իր կյանքում քո առանձնահատուկ տեղն ունես։
+                    </p>
+                </div>
+                <div className="mb-8 px-8">
+                    <p className="text-gray-500 text-xs mb-2 max-w-xs mx-auto leading-relaxed">
+                        Մեծ սիրով հրավիրում ենք քեզ միասին նշելու Արևի առաջին ծնդդյան օրը։
+                    </p>
+                    <p className="text-gray-500 text-xs mb-8 max-w-xs mx-auto leading-relaxed">
+                        Քո գույնը շատ կարևոր տեղ ունի Արևի աշխարհի գունապնակում։
                     </p>
                 </div>
 
                 {/* Date */}
                 <div className="text-center mb-8">
-                    <h2 className="font-bokonique-light text-2xl text-[#E3CB88]"><strong className="animate-pulse text-3xl">28</strong> ԱՊՐԻԼ 2025</h2>
+                    <h2 className="font-bokonique-light text-2xl text-[#E3CB88]"><strong
+                        className="animate-pulse text-3xl">13</strong> ՀՈԿՏԵՄԲԵՐ 2025</h2>
 
                     {/* Calendar */}
-                    <Calendar selectedDay={28} month={4} year={2025}/>
+                    <Calendar selectedDay={13} month={10} year={2025}/>
                 </div>
 
                 {/* Locations */}
                 <div className="mb-12">
                     <div className="section-title">
-                        <div className="background-text">locations</div>
-                        <h2 className="font-stylish-mother text-[46px] text-gray-600 text-center mb-8">LOCATIONS</h2>
+                        <div className="background-text">location</div>
+                        <h2 className="font-stylish-mother text-[46px] text-gray-600 text-center">LOCATION</h2>
                     </div>
 
                     <div className="relative">
-                        <div className="relative p-4">
+                        <div className="relative p-4 pt-0">
                             {/* Decorative curved line */}
                             {/*<div className="absolute top-[60px] left-0 right-0 h-[200px] pointer-events-none">*/}
-                            <div className="absolute left-0 top-8 pointer-events-none">
+                            <div className="absolute left-0 pointer-events-none">
 
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                     width="804" height="706"
-                                    // style="margin-top: -238px;margin-left: -231px;"
-                                     className="dot-roude"
-                                >
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="804" height="706"
+                                     className="dot-roude">
                                     <path
                                         d="M0 0 C1.32 0.66 2.64 1.32 4 2 C3.07347299 3.17539996 2.13336613 4.34010577 1.1875 5.5 C0.66542969 6.1496875 0.14335938 6.799375 -0.39453125 7.46875 C-2 9 -2 9 -5 9 C-5.33 8.01 -5.66 7.02 -6 6 C-4.02 4.02 -2.04 2.04 0 0 Z "
                                         fill="#E2CB87" transform="translate(738,625)"></path>
-                                    <path
-                                        d="M0 0 C3.36591866 1.44253657 5.51047079 3.33264727 8 6 C7.67 6.99 7.34 7.98 7 9 C3.2273236 8.46104623 1.31787009 7.00464642 -1 4 C-0.75 1.75 -0.75 1.75 0 0 Z "
-                                        fill="#E2CA87" transform="translate(10,78)"></path>
                                     <path
                                         d="M0 0 C-0.125 1.8125 -0.125 1.8125 -1 4 C-6.03571429 7 -6.03571429 7 -9 7 C-9.33 5.68 -9.66 4.36 -10 3 C-3.375 -1.125 -3.375 -1.125 0 0 Z "
                                         fill="#E2CB87" transform="translate(681,671)"></path>
@@ -831,21 +801,6 @@ export default function Home() {
                                         d="M0 0 C0.66 0 1.32 0 2 0 C3.7143618 1.95927063 5.38405168 3.95880212 7 6 C6.34 7.32 5.68 8.64 5 10 C1.75700849 7.61042731 -0.50902342 5.7952131 -2 2 C-1.34 1.34 -0.68 0.68 0 0 Z "
                                         fill="#E2CB87" transform="translate(269,294)"></path>
                                     <path
-                                        d="M0 0 C3.08089673 2.77280706 4.68775452 5.06326356 6 9 C4.68 9.33 3.36 9.66 2 10 C-0.475 6.04 -0.475 6.04 -3 2 C-2.01 1.34 -1.02 0.68 0 0 Z "
-                                        fill="#E2CB87" transform="translate(243,259)"></path>
-                                    <path
-                                        d="M0 0 C3.95820859 0.56545837 6.6659053 1.80902348 10 4 C9.67 4.99 9.34 5.98 9 7 C5.04179141 6.43454163 2.3340947 5.19097652 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z "
-                                        fill="#E2CB87" transform="translate(142,153)"></path>
-                                    <path
-                                        d="M0 0 C2.97 1.32 5.94 2.64 9 4 C8.67 5.32 8.34 6.64 8 8 C4.08788267 6.84414715 1.1254959 5.64465038 -2 3 C-1.34 2.01 -0.68 1.02 0 0 Z "
-                                        fill="#E2CB87" transform="translate(129,146)"></path>
-                                    <path
-                                        d="M0 0 C4.455 1.98 4.455 1.98 9 4 C8.67 5.32 8.34 6.64 8 8 C4.59687262 6.94124926 1.98646769 5.99097846 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z "
-                                        fill="#E2CA87" transform="translate(87,127)"></path>
-                                    <path
-                                        d="M0 0 C5.75 3.625 5.75 3.625 8 7 C7.67 7.66 7.34 8.32 7 9 C3.54074837 7.7508258 0.85306797 6.32472205 -2 4 C-1.34 2.68 -0.68 1.36 0 0 Z "
-                                        fill="#E2CB87" transform="translate(22,88)"></path>
-                                    <path
                                         d="M0 0 C0.33 0.99 0.66 1.98 1 3 C-2.72965139 5.03435531 -4.66905042 6 -9 6 C-9.33 5.01 -9.66 4.02 -10 3 C-3.375 0 -3.375 0 0 0 Z "
                                         fill="#E2CB87" transform="translate(653,683)"></path>
                                     <path
@@ -927,33 +882,6 @@ export default function Home() {
                                         d="M0 0 C1.2890625 1.53125 1.2890625 1.53125 2.625 3.5 C3.07101562 4.1496875 3.51703125 4.799375 3.9765625 5.46875 C4.31429688 5.9740625 4.65203125 6.479375 5 7 C4.67 7.66 4.34 8.32 4 9 C0.82461668 8.65978036 -0.02276865 7.97533396 -2.25 5.5625 C-4 3 -4 3 -4 1 C-2 0 -2 0 0 0 Z "
                                         fill="#E2CB87" transform="translate(262,283)"></path>
                                     <path
-                                        d="M0 0 C1.8125 0.1875 1.8125 0.1875 4 1 C5.8125 3.375 5.8125 3.375 7 6 C6.67 6.99 6.34 7.98 6 9 C5.01 9 4.02 9 3 9 C0.75 6.1875 0.75 6.1875 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z "
-                                        fill="#E2CB87" transform="translate(233,248)"></path>
-                                    <path
-                                        d="M0 0 C3.17538332 0.34021964 4.02276865 1.02466604 6.25 3.4375 C8 6 8 6 8 8 C6.68 8.33 5.36 8.66 4 9 C2.35 6.69 0.7 4.38 -1 2 C-0.67 1.34 -0.34 0.68 0 0 Z "
-                                        fill="#E2CB87" transform="translate(224,236)"></path>
-                                    <path
-                                        d="M0 0 C5.57142857 5.14285714 5.57142857 5.14285714 6 9 C4.68 9 3.36 9 2 9 C-0.25 6.5 -0.25 6.5 -2 4 C-1.34 2.68 -0.68 1.36 0 0 Z "
-                                        fill="#E2CB87" transform="translate(217,223)"></path>
-                                    <path
-                                        d="M0 0 C3.08089673 2.77280706 4.68775452 5.06326356 6 9 C4.68 9.33 3.36 9.66 2 10 C-2 4.375 -2 4.375 -2 1 C-1.34 0.67 -0.68 0.34 0 0 Z "
-                                        fill="#E2CB87" transform="translate(209,211)"></path>
-                                    <path
-                                        d="M0 0 C3.33523252 1.38009621 5.18607951 2.84950652 7 6 C6.67 6.99 6.34 7.98 6 9 C2.2047869 7.50902342 0.38957269 5.24299151 -2 2 C-1.34 1.34 -0.68 0.68 0 0 Z "
-                                        fill="#E2CB87" transform="translate(181,177)"></path>
-                                    <path
-                                        d="M0 0 C2.64 1.65 5.28 3.3 8 5 C7.34 6.32 6.68 7.64 6 9 C3.36 7.35 0.72 5.7 -2 4 C-1.34 2.68 -0.68 1.36 0 0 Z "
-                                        fill="#E2CB87" transform="translate(170,167)"></path>
-                                    <path
-                                        d="M0 0 C3.96 1.98 3.96 1.98 8 4 C8 5.32 8 6.64 8 8 C4.59687262 6.94124926 1.98646769 5.99097846 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z "
-                                        fill="#E3CB87" transform="translate(156,159)"></path>
-                                    <path
-                                        d="M0 0 C3.34373475 0.55728913 6.03312999 1.35173889 9 3 C8.67 4.32 8.34 5.64 8 7 C4.59687262 5.94124926 1.98646769 4.99097846 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z "
-                                        fill="#E3CB87" transform="translate(73,121)"></path>
-                                    <path
-                                        d="M0 0 C3.48539917 0.64544429 6.02819057 2.10134397 9 4 C8.67 5.32 8.34 6.64 8 8 C6.68397477 7.38245741 5.37226444 6.75571258 4.0625 6.125 C3.33160156 5.77695313 2.60070313 5.42890625 1.84765625 5.0703125 C0 4 0 4 -1 2 C-0.67 1.34 -0.34 0.68 0 0 Z "
-                                        fill="#E3CB87" transform="translate(46,106)"></path>
-                                    <path
                                         d="M0 0 C0.33 0.99 0.66 1.98 1 3 C-2.61973402 4.31626692 -5.09567131 5 -9 5 C-9.33 3.68 -9.66 2.36 -10 1 C-6.59437148 0.22157062 -3.49234244 -0.09978121 0 0 Z "
                                         fill="#E2CB87" transform="translate(624,691)"></path>
                                     <path
@@ -1032,18 +960,6 @@ export default function Home() {
                                         d="M0 0 C0 1.32 0 2.64 0 4 C-3.3 4.33 -6.6 4.66 -10 5 C-9.67 3.68 -9.34 2.36 -9 1 C-5.846632 0.29925156 -3.27275026 0 0 0 Z "
                                         fill="#E2CB87" transform="translate(676,297)"></path>
                                     <path
-                                        d="M0 0 C1.8125 0.1875 1.8125 0.1875 4 1 C5.8125 3.375 5.8125 3.375 7 6 C6.67 6.99 6.34 7.98 6 9 C2.66476748 7.61990379 0.81392049 6.15049348 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z "
-                                        fill="#E3CB87" transform="translate(199,200)"></path>
-                                    <path
-                                        d="M0 0 C2.97 1.32 5.94 2.64 9 4 C8.67 4.99 8.34 5.98 8 7 C4.44219804 6.39009109 1.3171411 5.4216319 -2 4 C-1.34 2.68 -0.68 1.36 0 0 Z "
-                                        fill="#E3CB87" transform="translate(115,140)"></path>
-                                    <path
-                                        d="M0 0 C2.97 1.65 5.94 3.3 9 5 C8.67 5.99 8.34 6.98 8 8 C4.17902761 7.46930939 1.93828597 6.50298434 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z "
-                                        fill="#E2CA87" transform="translate(60,113)"></path>
-                                    <path
-                                        d="M0 0 C3.82097239 0.53069061 6.06171403 1.49701566 9 4 C8.67 5.32 8.34 6.64 8 8 C5.03 6.35 2.06 4.7 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z "
-                                        fill="#E2CA88" transform="translate(33,98)"></path>
-                                    <path
                                         d="M0 0 C1.23556641 0.01740234 1.23556641 0.01740234 2.49609375 0.03515625 C3.32238281 0.04417969 4.14867187 0.05320312 5 0.0625 C5.63808594 0.07410156 6.27617188 0.08570313 6.93359375 0.09765625 C7.26359375 1.08765625 7.59359375 2.07765625 7.93359375 3.09765625 C6.93359375 4.09765625 6.93359375 4.09765625 4.8671875 4.1953125 C4.04347656 4.18371094 3.21976563 4.17210937 2.37109375 4.16015625 C1.54480469 4.15113281 0.71851563 4.14210938 -0.1328125 4.1328125 C-0.77089844 4.12121094 -1.40898438 4.10960937 -2.06640625 4.09765625 C-2.39640625 3.10765625 -2.72640625 2.11765625 -3.06640625 1.09765625 C-2.06640625 0.09765625 -2.06640625 0.09765625 0 0 Z "
                                         fill="#E3CB87" transform="translate(602.06640625,692.90234375)"></path>
                                     <path
@@ -1077,12 +993,6 @@ export default function Home() {
                                         d="M0 0 C1.32 0.33 2.64 0.66 4 1 C3.25 8.75 3.25 8.75 1 11 C0.01 10.34 -0.98 9.68 -2 9 C-1.34 6.03 -0.68 3.06 0 0 Z "
                                         fill="#E2CB87" transform="translate(771,368)"></path>
                                     <path
-                                        d="M0 0 C3.33523252 1.38009621 5.18607951 2.84950652 7 6 C6.67 6.99 6.34 7.98 6 9 C2.66476748 7.61990379 0.81392049 6.15049348 -1 3 C-0.67 2.01 -0.34 1.02 0 0 Z "
-                                        fill="#E2CA87" transform="translate(190,188)"></path>
-                                    <path
-                                        d="M0 0 C3.77545388 1.09068668 6.47043472 1.9083091 9 5 C8.67 5.66 8.34 6.32 8 7 C5.03 6.01 2.06 5.02 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z "
-                                        fill="#E2CA87" transform="translate(101,134)"></path>
-                                    <path
                                         d="M0 0 C2.97 0.33 5.94 0.66 9 1 C9 2.32 9 3.64 9 5 C5.7 4.67 2.4 4.34 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z "
                                         fill="#E2CB87" transform="translate(386,378)"></path>
                                     <path
@@ -1091,9 +1001,6 @@ export default function Home() {
                                     <path
                                         d="M0 0 C0.66 0 1.32 0 2 0 C3.60725635 3.21451269 3.05748185 6.43612536 3 10 C1.68 10 0.36 10 -1 10 C-1.02689216 8.52093108 -1.04634621 7.04172517 -1.0625 5.5625 C-1.07410156 4.73878906 -1.08570313 3.91507812 -1.09765625 3.06640625 C-1 1 -1 1 0 0 Z "
                                         fill="#E3CB87" transform="translate(772,353)"></path>
-                                    <path
-                                        d="M0 0 C3.36720387 1.39332574 4.9859524 2.9789286 7 6 C6.34 7.32 5.68 8.64 5 10 C0.07692308 5.69230769 0.07692308 5.69230769 -0.3125 2.1875 C-0.209375 1.465625 -0.10625 0.74375 0 0 Z "
-                                        fill="#E2CB87" transform="translate(0,67)"></path>
                                     <path
                                         d="M0 0 C0.99 0.33 1.98 0.66 3 1 C1.50902342 4.7952131 -0.75700849 6.61042731 -4 9 C-4.66 8.01 -5.32 7.02 -6 6 C-4.02 4.02 -2.04 2.04 0 0 Z "
                                         fill="#E2CA88" transform="translate(749,615)"></path>
@@ -1116,34 +1023,26 @@ export default function Home() {
                             <div className="mb-16">
                                 <div className="flex">
                                     <div className="h-20 relative flex-shrink-0">
-                                        <div className="circle-image">
-                                            <img src="/images/church-image.png" alt="Church"/>
-                                        </div>
-                                        {/*<div
-                                            className="w-full h-full rounded-full overflow-hidden border-2 border-3 border-[#E3CB88]/60">
-                                            <Image src="/images/Rubina.jpg" alt="Church" fill
-                                                   className="object-cover"/>
-                                        </div>*/}
+                                        {/*<div className="circle-image">*/}
+                                        {/*    <img src="/images/church-image.png" alt="Church"/>*/}
+                                        {/*</div>*/}
                                     </div>
                                     <div className="ml-4 mb-6">
-                                        <h3 className="text-[#E3CB88] text-lg font-medium">ԵԿԵՂԵՑԻ</h3>
-                                        <p className="text-gray-600 text-xs"><strong
-                                            className="text-black">Սաղմոսավանք </strong>
-                                        </p>
-                                        <p className="text-2xl text-gray-700 font-light">14:00</p>
-                                        <div className="mt-1">
-                                            <a
-                                                href="https://www.google.com/maps/search/?api=1&query=40.38054071398459,44.39671876840379"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-block bg-[#E3CB88] text-white text-xs px-5 py-1.5 rounded-full"
-                                            >
-                                                ՔԱՐՏԵԶ
-                                            </a>
-                                            {/*<button*/}
-                                            {/*    className="bg-[#E3CB88] text-white text-xs px-5 py-1.5 rounded-full">ՔԱՐՏԵԶ*/}
-                                            {/*</button>*/}
-                                        </div>
+                                        {/*<h3 className="text-[#E3CB88] text-lg font-medium">ԵԿԵՂԵՑԻ</h3>*/}
+                                        {/*<p className="text-gray-600 text-xs"><strong*/}
+                                        {/*    className="text-black">Սաղմոսավանք </strong>*/}
+                                        {/*</p>*/}
+                                        {/*<p className="text-2xl text-gray-700 font-light">14:00</p>*/}
+                                        {/*<div className="mt-1">*/}
+                                        {/*    <a*/}
+                                        {/*        href="https://www.google.com/maps/search/?api=1&query=40.38054071398459,44.39671876840379"*/}
+                                        {/*        target="_blank"*/}
+                                        {/*        rel="noopener noreferrer"*/}
+                                        {/*        className="inline-block bg-[#E3CB88] text-white text-xs px-5 py-1.5 rounded-full"*/}
+                                        {/*    >*/}
+                                        {/*        ՔԱՐՏԵԶ*/}
+                                        {/*    </a>*/}
+                                        {/*</div>*/}
                                     </div>
                                 </div>
                                 {/*<div className="mt-3 ml-24">
@@ -1154,56 +1053,30 @@ export default function Home() {
                             {/* Second location */}
                             <div className="mb-16">
                                 <div className="flex justify-end flex-row-reverse">
-                                    {/*<div className="w-20 h-20 relative flex-shrink-0">
-                                        <div className="w-full h-full rounded-full overflow-hidden border-2 circle-image border-[#E3CB88]/60">
-                                            <img src="/images/Rubina.jpg" alt="Restaurant"
-                                                   className=""/>
-                                        </div>
-                                    </div>*/}
                                     <div className="w-20 h-20 relative flex-shrink-0">
                                         <div className="circle-image">
-                                            <img src="/images/Rubina.jpg" alt="Church"/>
+                                            <img src="/images/rivera.jpeg" alt="Rivera"/>
                                         </div>
                                     </div>
                                     <div className="w-36 pl-2 text-left">
                                         <h3 className="text-[#E3CB88] text-lg font-medium">ՌԵՍՏՈՐԱՆ</h3>
-                                        <p className="text-gray-600 w-0 text-xs"><strong
-                                            className="text-black">Ռուբինա </strong>
-                                            ռեստորանային համալիր</p>
+                                        <p className="text-gray-600 w-0 text-xs">
+                                            <strong className="text-black text-lg">Rivera </strong>
+                                        </p>
                                         <p className="text-2xl text-gray-700 font-light">17:00</p>
                                         <div className="mt-3 mr-14 text-right">
                                             <a
-                                                href="https://www.google.com/maps/search/?api=1&query=40.165243101830605, 44.41446851595153"
+                                                href="https://maps.app.goo.gl/r3HFzehzT16AFqkB6"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-block bg-[#E3CB88] text-white text-xs px-5 py-1.5 rounded-full"
                                             >
                                                 ՔԱՐՏԵԶ
                                             </a>
-                                            {/*<button*/}
-                                            {/*    className="bg-[#E3CB88] text-white text-xs px-5 py-1.5 rounded-full">ՔԱՐՏԵԶ*/}
-                                            {/*</button>*/}
                                         </div>
                                     </div>
                                 </div>
-                                {/*<div className="mt-3 mr-24 text-right">
-                  <button className="bg-[#E3CB88] text-white text-xs px-5 py-1.5 rounded-full">ՔԱՐՏԵԶ</button>
-                </div>*/}
                             </div>
-
-                            {/* Decorative curved line */}
-                            {/*<div className="absolute bottom-[-50px] left-0 right-0 h-[200px] pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                      d="M0,150 Q100,200 200,150 T400,150"
-                      stroke="#E3CB88"
-                      strokeWidth="1"
-                      strokeDasharray="4 4"
-                      opacity="0.5"
-                      fill="none"
-                  />
-                </svg>
-              </div>*/}
                         </div>
                     </div>
                 </div>
@@ -1211,12 +1084,12 @@ export default function Home() {
                 {/* RSVP Note */}
                 <div className="bg-[#E3CB88] rounded-full py-4 px-8 mx-10 text-center mb-10">
                     <p className="text-xs text-black">Խնդրում ենք հաստատել Ձեր ներկայությունը
-                        մինչև <strong className="text-black">ապրիլի 20-ը։</strong></p>
+                        մինչև <strong className="text-black">հոկտեմբերի 1-ը։</strong></p>
                 </div>
 
                 {/* Footer */}
                 <div className="text-center text-gray-400 text-xs pb-10">
-                    <p>ՍԻՐՈՎ՝ ՌՈՄԱՆ ԵՎ ՍՎԵՏԼԱՆԱ</p>
+                    <p>Սիրով Արևի շողեր՝ Կարուշ և Արաքս</p>
                 </div>
             </div>
         </main>
