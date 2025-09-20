@@ -538,7 +538,7 @@ export default function Home() {
                 >
                     <p className="text-xs text-black"
                     >Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
-                        <strong className="text-black">հոկտեմբերի 1-ը։</strong>
+                        <strong className="text-black"> հոկտեմբերի 1-ը։</strong>
                     </p>
                 </div>
 

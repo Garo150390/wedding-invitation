@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -23,34 +23,93 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [focusedField, setFocusedField] = useState<string | null>(null)
+    const [keyboardOpen, setKeyboardOpen] = useState(false)
+    const formRef = useRef<HTMLFormElement>(null)
     const { toast } = useToast()
 
-    // Handle keyboard opening on mobile
+    // Handle mobile keyboard detection and scrolling
     useEffect(() => {
-        if (open) {
-            // Prevent body scroll when modal is open
-            document.body.style.overflow = "hidden"
+        if (!open) return
 
-            // Add event listener for input focus
-            const handleFocus = () => {
-                setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                }, 300)
-            }
+        const initialViewportHeight = window.visualViewport?.height || window.innerHeight
 
-            const inputs = document.querySelectorAll("input")
-            inputs.forEach((input) => {
-                input.addEventListener("focus", handleFocus)
-            })
+        const handleViewportChange = () => {
+            if (window.visualViewport) {
+                const currentHeight = window.visualViewport.height
+                const heightDifference = initialViewportHeight - currentHeight
 
-            return () => {
-                document.body.style.overflow = "unset"
-                inputs.forEach((input) => {
-                    input.removeEventListener("focus", handleFocus)
-                })
+                // If viewport height decreased by more than 150px, keyboard is likely open
+                if (heightDifference > 150) {
+                    setKeyboardOpen(true)
+                    // Scroll the focused element into view
+                    setTimeout(() => {
+                        const activeElement = document.activeElement as HTMLElement
+                        if (activeElement && activeElement.scrollIntoView) {
+                            activeElement.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center",
+                                inline: "nearest",
+                            })
+                        }
+                    }, 100)
+                } else {
+                    setKeyboardOpen(false)
+                }
             }
         }
+
+        const handleResize = () => {
+            const currentHeight = window.innerHeight
+            const heightDifference = initialViewportHeight - currentHeight
+
+            if (heightDifference > 150) {
+                setKeyboardOpen(true)
+            } else {
+                setKeyboardOpen(false)
+            }
+        }
+
+        // Use Visual Viewport API if available, fallback to resize event
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener("resize", handleViewportChange)
+        } else {
+            window.addEventListener("resize", handleResize)
+        }
+
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = "hidden"
+        document.body.style.position = "fixed"
+        document.body.style.width = "100%"
+
+        return () => {
+            if (window.visualViewport) {
+                window.visualViewport.removeEventListener("resize", handleViewportChange)
+            } else {
+                window.removeEventListener("resize", handleResize)
+            }
+
+            document.body.style.overflow = "unset"
+            document.body.style.position = "unset"
+            document.body.style.width = "unset"
+            setKeyboardOpen(false)
+        }
     }, [open])
+
+    const handleInputFocus = (fieldName: string) => {
+        setFocusedField(fieldName)
+
+        // Small delay to ensure keyboard is opening
+        setTimeout(() => {
+            const activeElement = document.activeElement as HTMLElement
+            if (activeElement) {
+                activeElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "nearest",
+                })
+            }
+        }, 300)
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -122,22 +181,31 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-md mx-4 max-h-[90vh] overflow-y-auto">
-                <DialogHeader className="pb-2">
-                    <DialogTitle className="text-center text-lg font-medium text-dark leading-relaxed">
-                        Խնդրում ենք հաստատել Ձեր ներկայությունը
+            <DialogContent
+                className={`
+          w-[95vw] max-w-md mx-auto
+          ${
+                    keyboardOpen ? "h-[50vh] max-h-[50vh] top-[10%] translate-y-0" : "max-h-[85vh] top-[50%] translate-y-[-50%]"
+                }
+          overflow-y-auto
+          transition-all duration-300 ease-in-out
+        `}
+            >
+                <DialogHeader className="pb-2 flex-shrink-0">
+                    <DialogTitle className="text-gray-500 text-xs text-center font-medium text-dark leading-relaxed">
+                        Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
                         <br />
-                        մինչև 01.10.2025
+                        <strong className="text-black ">01.10.2025։</strong>
                     </DialogTitle>
                 </DialogHeader>
 
-                <form onSubmit={handleSubmit} className="space-y-8 mt-4">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 mt-4 flex-1">
                     {/* First Radio Group - Groom/Bride Side */}
                     <div className="space-y-4 hidden">
                         <RadioGroup
                             value={formData.attendance}
                             onValueChange={(value) => setFormData({ ...formData, attendance: value })}
-                            className="space-y-3"
+                            className="space-y-2"
                         >
                             <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                                 <RadioGroupItem
@@ -170,7 +238,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                onFocus={() => setFocusedField("name")}
+                                onFocus={() => handleInputFocus("name")}
                                 onBlur={() => setFocusedField(null)}
                                 className="peer w-full px-4 py-4 text-base bg-transparent border-2 border-gray/20 rounded-lg focus:border-gold focus:outline-none transition-all duration-200 placeholder-transparent"
                                 placeholder="Անուն Ազգանուն"
@@ -181,7 +249,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${
                                     focusedField === "name" || formData.name
                                         ? "-top-2 text-xs bg-white px-1 text-gold"
-                                        : "top-4 text-base text-gray/60"
+                                        : "top-4 text-base text-gray-400"
                                 }`}
                             >
                                 Անուն Ազգանուն
@@ -190,11 +258,11 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                     </div>
 
                     {/* Second Radio Group - Will Come */}
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                         <RadioGroup
                             value={formData.willCome}
                             onValueChange={(value) => setFormData({ ...formData, willCome: value })}
-                            className="space-y-3"
+                            className="space-y-2"
                         >
                             <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                                 <RadioGroupItem
@@ -225,11 +293,13 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                             <input
                                 id="guestCount"
                                 type="number"
+                                inputMode="numeric"
+                                pattern="[0-9]*"
                                 min="1"
                                 max="20"
                                 value={formData.guestCount}
                                 onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
-                                onFocus={() => setFocusedField("guestCount")}
+                                onFocus={() => handleInputFocus("guestCount")}
                                 onBlur={() => setFocusedField(null)}
                                 className="peer w-full px-4 py-4 text-base bg-transparent border-2 border-gray/20 rounded-lg focus:border-gold focus:outline-none transition-all duration-200 placeholder-transparent"
                                 placeholder="Հյուրերի թիվ"
@@ -240,7 +310,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${
                                     focusedField === "guestCount" || formData.guestCount
                                         ? "-top-2 text-xs bg-white px-1 text-gold"
-                                        : "top-4 text-base text-gray/60"
+                                        : "top-4 text-base text-gray-400"
                                 }`}
                             >
                                 Հյուրերի թիվ
@@ -249,11 +319,11 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                     </div>
 
                     {/* Submit Button */}
-                    <div className="flex justify-center pt-6 pb-2">
+                    <div className={`flex justify-center pt-4 pb-2 ${keyboardOpen ? "pb-6 !mb-40" : ""}`}>
                         <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full sm:w-auto bg-gold hover:bg-gold/90 text-white px-12 py-4 rounded-full text-base font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:scale-105"
+                            className="w-full sm:w-auto bg-gold hover:bg-gold/90 text-white px-8 py-4 rounded-full text-base font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:scale-105"
                         >
                             {isSubmitting ? (
                                 <div className="flex items-center space-x-2">
