@@ -5,6 +5,7 @@ import { Calendar } from '@/components/calendar'
 import { Pause, Music } from 'lucide-react'
 import { FloatingSmiles } from "@/components/floating-smiles"
 import { RSVPForm } from "@/components/rsvp-form"
+import { ChevronRight, TruckIcon as TouchIcon, Sparkles } from "lucide-react"
 
 export default function Home() {
     const [isPlaying, setIsPlaying] = useState(false)
@@ -532,14 +533,36 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* RSVP Note */}
-                <div className="bg-[#E3CB88] rounded-full py-4 px-8 mx-10 text-center mb-10 cursor-pointer"
-                     onClick={() => setShowRSVP(true)}
-                >
-                    <p className="text-xs text-black"
-                    >Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
-                        <strong className="text-black"> հոկտեմբերի 1-ը։</strong>
-                    </p>
+                <div className="mt-12 mb-8 px-6">
+                    <button
+                        onClick={() => setShowRSVP(true)}
+                        className="animate-pulse bg-gold rounded-full py-5 px-6 text-center text-sm shadow-lg"
+                    >
+                        {/* Animated background gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-gold/80 via-gold to-gold/80 animate-pulse opacity-50"></div>
+
+                        {/* Main content */}
+                        <div className="relative flex items-center justify-between">
+                            <div className="flex-1 text-xs text-center px-1">
+                                <p className="text-xs text-black"
+                                >Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
+                                    <strong className="text-black"> հոկտեմբերի 1-ը։</strong>
+                                </p>
+                                <div className="text-xs text-white/80 mt-1 flex items-center">
+                                    <TouchIcon className="w-3 h-3 mr-1" />
+                                    Սեղմեք՝ պատասխանելու համար
+                                </div>
+                            </div>
+
+                            {/* Arrow indicator */}
+                            <div className="ml-4 flex items-center">
+                                <ChevronRight className="w-5 h-5 text-white/90 group-hover:translate-x-1 transition-transform duration-200" />
+                            </div>
+                        </div>
+
+                        {/* Ripple effect on click */}
+                        <div className="absolute inset-0 rounded-full opacity-0 group-active:opacity-20 bg-white transition-opacity duration-150"></div>
+                    </button>
                 </div>
 
                 {/* Footer */}
