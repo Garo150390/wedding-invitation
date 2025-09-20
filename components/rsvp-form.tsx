@@ -102,7 +102,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                     <DialogTitle className="text-center text-lg font-medium text-dark leading-relaxed">
                         Խնդրում ենք հաստատել Ձեր ներկայությունը մեր շքամուտ
                         <br />
-                        մինչև 13.08.2025
+                        մինչև 01.10.2025
                     </DialogTitle>
                 </DialogHeader>
 
