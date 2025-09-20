@@ -4,9 +4,12 @@ import { useState, useEffect, useRef } from 'react'
 import { Calendar } from '@/components/calendar'
 import { Pause, Music } from 'lucide-react'
 import { FloatingSmiles } from "@/components/floating-smiles"
+import { RSVPForm } from "@/components/rsvp-form"
 
 export default function Home() {
     const [isPlaying, setIsPlaying] = useState(false)
+    const [showRSVP, setShowRSVP] = useState(false)
+
     const [autoplayAttempted, setAutoplayAttempted] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
 
@@ -530,9 +533,13 @@ export default function Home() {
                 </div>
 
                 {/* RSVP Note */}
-                <div className="bg-[#E3CB88] rounded-full py-4 px-8 mx-10 text-center mb-10">
-                    <p className="text-xs text-black">Խնդրում ենք հաստատել Ձեր ներկայությունը
-                        մինչև <strong className="text-black">հոկտեմբերի 1-ը։</strong></p>
+                <div className="bg-[#E3CB88] rounded-full py-4 px-8 mx-10 text-center mb-10 cursor-pointer"
+                     onClick={() => setShowRSVP(true)}
+                >
+                    <p className="text-xs text-black"
+                    >Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
+                        <strong className="text-black">հոկտեմբերի 1-ը։</strong>
+                    </p>
                 </div>
 
                 {/* Footer */}
@@ -540,6 +547,8 @@ export default function Home() {
                     <p>Սիրով Արևի շողեր՝ Կարուշ և Արաքս</p>
                 </div>
             </div>
+            {/* RSVP Form Modal */}
+            <RSVPForm open={showRSVP} onOpenChange={setShowRSVP} />
         </main>
     )
 }
