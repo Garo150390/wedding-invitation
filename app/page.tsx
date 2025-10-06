@@ -546,7 +546,7 @@ export default function Home() {
                             <div className="flex-1 text-xs text-center px-1">
                                 <p className="text-xs text-black"
                                 >Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
-                                    <strong className="text-black"> հոկտեմբերի 1-ը։</strong>
+                                    <strong className="text-black"> հոկտեմբերի 10-ը։</strong>
                                 </p>
                                 <div className="text-xs text-white/80 mt-1 flex items-center">
                                     <TouchIcon className="w-3 h-3 mr-1" />

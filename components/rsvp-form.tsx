@@ -195,7 +195,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                     <DialogTitle className="text-gray-500 text-xs text-center font-medium text-dark leading-relaxed">
                         Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
                         <br />
-                        <strong className="text-black ">01.10.2025։</strong>
+                        <strong className="text-black ">10.10.2025։</strong>
                     </DialogTitle>
                 </DialogHeader>
 
