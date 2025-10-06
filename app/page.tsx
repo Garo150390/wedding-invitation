@@ -539,7 +539,7 @@ export default function Home() {
                         className="animate-pulse bg-gold rounded-full py-5 px-6 text-center text-sm shadow-lg"
                     >
                         {/* Animated background gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-gold/80 via-gold to-gold/80 animate-pulse opacity-50"></div>
+                        <div className="inset-0 bg-gradient-to-r from-gold/80 via-gold to-gold/80 animate-pulse opacity-50"></div>
 
                         {/* Main content */}
                         <div className="relative flex items-center justify-between">
@@ -561,7 +561,7 @@ export default function Home() {
                         </div>
 
                         {/* Ripple effect on click */}
-                        <div className="absolute inset-0 rounded-full opacity-0 group-active:opacity-20 bg-white transition-opacity duration-150"></div>
+                        <div className="inset-0 rounded-full opacity-0 group-active:opacity-20 bg-white transition-opacity duration-150"></div>
                     </button>
                 </div>
 
