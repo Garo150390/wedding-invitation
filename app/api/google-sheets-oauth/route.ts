@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
             data.name,
             data.attendance === "bride" ? "Հարսի կողմ" : "Փեսայի կողմ",
             data.willCome === "yes" ? "Մենք կգանք" : "Չենք կարող գալ",
-            data.guestCount || "0",
+            Number(data.guestCount) || 0,
             new Date(data.submittedAt).toLocaleString("hy-AM"),
         ]
 

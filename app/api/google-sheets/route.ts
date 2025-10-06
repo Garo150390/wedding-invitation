@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
         // Prepare the data to be inserted
         const rowData = [
             data.name,
-            data.attendance === "groom" ? "Հարսի կողմ" : "Փեսայի կողմ",
-            data.willCome === "yes" ? "Նենք կգամ" : "Չենք կարող գալ",
+            data.attendance === "bride" ? "Հարսի կողմ" : "Փեսայի կողմ",
+            data.willCome === "yes" ? "Մենք կգանք" : "Չենք կարող գալ",
             data.guestCount || "0",
             new Date(data.submittedAt).toLocaleString("hy-AM"),
         ]
