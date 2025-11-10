@@ -561,7 +561,7 @@ export default function Home() {
                                 <div className="flex justify-end flex-row-reverse">
                                     <div className="w-20 h-20 relative flex-shrink-0">
                                         <div className="circle-image">
-                                            <img src="/images/Rubina.jpg" alt="Church"/>
+                                            <img src="/images/paradise-hall.jpg" alt="Church"/>
                                         </div>
                                     </div>
                                     <div className="w-36 pl-2 text-left">
