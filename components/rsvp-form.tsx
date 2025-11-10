@@ -115,17 +115,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
         e.preventDefault()
 
         // for weeding
-        // if (!formData.name || !formData.attendance || !formData.willCome || !formData.guestCount) {
-        //     console.log()
-        //     toast({
-        //         title: "Խնդրում ենք լրացնել բոլոր դաշտերը",
-        //         description: "Անունը և կողմի ընտրությունը պարտադիր են:",
-        //         variant: "destructive",
-        //     })
-        //     return
-        // }
-
-        if (!formData.name || !formData.willCome || !formData.guestCount) {
+        if (!formData.name || !formData.attendance || !formData.willCome || !formData.guestCount) {
             console.log()
             toast({
                 title: "Խնդրում ենք լրացնել բոլոր դաշտերը",
@@ -134,6 +124,16 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
             })
             return
         }
+
+        // if (!formData.name || !formData.willCome || !formData.guestCount) {
+        //     console.log()
+        //     toast({
+        //         title: "Խնդրում ենք լրացնել բոլոր դաշտերը",
+        //         description: "Անունը և կողմի ընտրությունը պարտադիր են:",
+        //         variant: "destructive",
+        //     })
+        //     return
+        // }
 
         setIsSubmitting(true)
 
@@ -195,13 +195,13 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                     <DialogTitle className="text-gray-500 text-xs text-center font-medium text-dark leading-relaxed">
                         Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև
                         <br />
-                        <strong className="text-black ">10.10.2025։</strong>
+                        <strong className="text-black "> Նոյեմբերի 30-ը </strong>
                     </DialogTitle>
                 </DialogHeader>
 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 mt-4 flex-1">
                     {/* First Radio Group - Groom/Bride Side */}
-                    <div className="space-y-4 hidden">
+                    <div className="space-y-4">
                         <RadioGroup
                             value={formData.attendance}
                             onValueChange={(value) => setFormData({ ...formData, attendance: value })}
@@ -248,7 +248,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                                 htmlFor="name"
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${
                                     focusedField === "name" || formData.name
-                                        ? "-top-2 text-xs bg-white px-1 text-gold"
+                                        ? "-top-2 text-xs bg-white px-1 text-wedding"
                                         : "top-4 text-base text-gray-400"
                                 }`}
                             >
@@ -309,7 +309,7 @@ export function RSVPForm({ open, onOpenChange }: RSVPFormProps) {
                                 htmlFor="guestCount"
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${
                                     focusedField === "guestCount" || formData.guestCount
-                                        ? "-top-2 text-xs bg-white px-1 text-gold"
+                                        ? "-top-2 text-xs bg-white px-1 text-wedding"
                                         : "top-4 text-base text-gray-400"
                                 }`}
                             >

@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --wedding-gold: #e3cb88;
+  /*--wedding-gold: #e3cb88;*/
+  /*--wedding-gold: #8f9582;*/
+  --wedding-gold: #472530;
+  --wedding-backgrounf: #e3e9f2;
+  /*--wedding-backgrounf: #113468;*/
 }
 
 @font-face {
@@ -59,7 +63,7 @@
 }
 
 body {
-  background-color: white;
+  background-color: var(--wedding-backgrounf);
   color: #333;
 
   .border-3 {
@@ -92,20 +96,26 @@ body {
     text-wrap: balance;
   }
 
-  .text-gold {
-    color: #e3cb88;
+  .text-wedding {
+    color: var(--wedding-gold);
+    text: var(--wedding-gold);
+  }
+
+  .svg-dots {
+    /*color: #E2CA87;*/
+    color: var(--wedding-gold);
   }
 
   .bg-gold {
-    background-color: #e3cb88;
+    background-color: var(--wedding-gold);
   }
 
   .border-gold {
-    border-color: #e3cb88;
+    border-color: var(--wedding-gold);
   }
 
   .ring-gold {
-    --tw-ring-color: #e3cb88;
+    --tw-ring-color: var(--wedding-gold);
   }
 
   .text-gray {
@@ -126,6 +136,10 @@ body {
 
   .bg-dark {
     background-color: #1a1818;
+  }
+
+  .bg-white {
+    background-color: var(--wedding-backgrounf);
   }
 
   .border-dark {
@@ -183,14 +197,14 @@ body {
 
 .dot-roude {
   margin-top: -15rem;
-  margin-left: -15rem;
+  margin-left: -13rem;
   scale: 0.6;
 }
 
 .hero {
   position: relative;
-  height: 500px;
-  background: url("/images/5361842674635764245.jpg") no-repeat center/cover;
+  height: 600px;
+  background: url("/images/0fc9a5eeda57021098efc9ddcdb1ccad.jpg") no-repeat center/cover;
 }
 
 .hero::after {
@@ -200,7 +214,24 @@ body {
   left: 0;
   right: 0;
   height: 50%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 90%);
+  background: linear-gradient(to bottom, rgba(227, 233, 242, 0) 0%, #e3e9f2 90%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  /*background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 90%);*/
+  background:
+  /*linear-gradient(to right, #e3e9f2 0%, rgba(255, 255, 255, 0) 4%),*/
+  /*  !* right fade *!*/
+  /*linear-gradient(to left, #e3e9f2 0%, rgba(255, 255, 255, 0) 4%);*/
+       linear-gradient(90deg,rgba(227, 233, 242, 0) 90%, #e3e9f2 100%),
+       linear-gradient(270deg,rgba(227, 233, 242, 0) 90%, #e3e9f2 100%);
+
 }
 
 .text-overlay {
@@ -214,13 +245,14 @@ body {
 .text-overlay h1 {
   font-size: 48px;
   margin: 0;
-  color: #444;
+  /*color: #444;*/
+  color: #1e1e1e;
 }
 
 .text-overlay h2 {
   font-size: 24px;
   margin: 10px 0 0;
-  color: #c9a960;
+  color: var(--wedding-gold);
   letter-spacing: 5px;
 }
 
@@ -245,7 +277,7 @@ body {
 
 @media (min-width: 768px) {
   body {
-    max-width: 430px;
+    /*max-width: 430px;*/
     margin: 0 auto;
   }
 }

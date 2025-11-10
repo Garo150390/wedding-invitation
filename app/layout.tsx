@@ -18,8 +18,8 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-    title: 'Arev birthday',
-    description: 'Invitation for Arev birthday',
+    title: 'Garnik & Agapi Wedding',
+    description: 'Wedding invitation for Garnik & Agapi',
     generator: 'v0.dev'
 }
 

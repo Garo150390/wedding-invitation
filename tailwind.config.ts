@@ -45,7 +45,8 @@ const config: Config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         wedding: {
-          gold: "#E3CB88",
+          // gold: "#E3CB88",
+          gold: "var(--wedding-gold)",
         },
       },
       borderRadius: {
