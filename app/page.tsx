@@ -544,7 +544,8 @@ export default function Home() {
                                         <p className="text-2xl text-gray-700 font-light">14:00</p>
                                         <div className="mt-1">
                                             <a
-                                                href="https://www.google.com/maps/search/?api=1&query=40.38054071398459,44.39671876840379"
+                                                href="https://yandex.com/maps/org/85182211877/?ll=44.309467%2C40.166998&z=15"
+                                                // href="https://www.google.com/maps/search/?api=1&query=40.38054071398459,44.39671876840379"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-block bg-[var(--wedding-gold)] text-white text-xs px-5 py-1.5 rounded-full"
@@ -572,7 +573,8 @@ export default function Home() {
                                         <p className="text-2xl text-gray-700 font-light">17:30</p>
                                         <div className="mt-3 mr-14 text-right">
                                             <a
-                                                href="https://www.google.com/maps/search/?api=1&query=40.165243101830605, 44.41446851595153"
+                                                // href="https://www.google.com/maps/search/?api=1&query=40.165243101830605, 44.41446851595153"
+                                                href="https://yandex.com/maps/org/paradise_hall/228036552345/?ll=44.043594%2C40.156037&z=15"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-block bg-[var(--wedding-gold)] text-white text-xs px-5 py-1.5 rounded-full"
